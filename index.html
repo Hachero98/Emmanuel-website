@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Emmanuel Hackman | Computational Mathematics</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {
+      delimiters: [
+        {left: '$$', right: '$$', display: true},
+        {left: '$', right: '$', display: false}
+      ]
+    })"></script>
+</head>
+<body>
+
+  <nav id="navbar">
+    <div class="nav-inner">
+      <span class="nav-logo">EH</span>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#publications">Publications</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <span class="icon-sun">&#9728;</span>
+        <span class="icon-moon">&#9790;</span>
+      </button>
+    </div>
+  </nav>
+
+  <section id="hero">
+    <div class="hero-bg">
+      <canvas id="particleCanvas"></canvas>
+    </div>
+    <div class="hero-content">
+      <p class="hero-greeting">Hello, I'm</p>
+      <h1 class="hero-name">Emmanuel Hackman</h1>
+      <p class="hero-title">PhD Student &mdash; Computational Mathematics</p>
+      <p class="hero-sub">
+        Physics-Informed Neural Networks &nbsp;&middot;&nbsp; Neural ODEs &nbsp;&middot;&nbsp; Scientific Machine Learning
+      </p>
+      <div class="hero-eq">
+        $$\mathcal{L}[\mathbf{u}](\mathbf{x}) = f(\mathbf{x}), \quad \mathbf{x} \in \Omega$$
+      </div>
+      <div class="hero-actions">
+        <a href="#research" class="btn btn-primary">View Research</a>
+        <a href="#contact" class="btn btn-outline">Get in Touch</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="container">
+      <h2 class="section-title">About Me</h2>
+      <div class="about-grid">
+        <div class="about-avatar">
+          <!-- To add your photo: save it as photo.jpg in this folder -->
+          <img src="photo.jpg" alt="Emmanuel Hackman"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+               style="width:140px;height:140px;border-radius:50%;object-fit:cover;margin:0 auto 1.5rem;display:block;box-shadow:var(--shadow-md);" />
+          <div class="avatar-placeholder" style="display:none;">
+            <span>EH</span>
+          </div>
+          <div class="about-links">
+            <a href="mailto:hackman@university.edu" class="icon-link" title="Email">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            </a>
+            <a href="https://github.com/emmanuelhackman" target="_blank" class="icon-link" title="GitHub">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
+            </a>
+            <a href="https://scholar.google.com/" target="_blank" class="icon-link" title="Google Scholar">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M5.242 13.769 12 9.25 18.758 13.769 16 17H8l-2.758-3.231Z"/><path d="M12 3 1 9.5l3 1.75V18a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V11.25L23 9.5 12 3Z"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="about-text">
+          <p>
+            I am a PhD student in the Department of Computational Mathematics, where I develop
+            machine-learning-based methods for solving differential equations. My work sits at the
+            intersection of <strong>numerical analysis</strong>, <strong>deep learning</strong>, and
+            <strong>scientific computing</strong>.
+          </p>
+          <p>
+            My primary focus is on <strong>Physics-Informed Neural Networks (PINNs)</strong> and
+            <strong>Neural Ordinary Differential Equations (Neural ODEs)</strong> &mdash; methods that
+            embed physical laws directly into neural network architectures, enabling data-efficient
+            and interpretable solvers for complex PDE systems.
+          </p>
+          <p>
+            I am broadly interested in questions of convergence, stability, and error estimation
+            for learned solvers, as well as their application to inverse problems in science and
+            engineering.
+          </p>
+          <div class="interest-tags">
+            <span class="tag">PINNs</span>
+            <span class="tag">Neural ODEs</span>
+            <span class="tag">Scientific ML</span>
+            <span class="tag">Numerical Analysis</span>
+            <span class="tag">Inverse Problems</span>
+            <span class="tag">Deep Learning</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="research">
+    <div class="container">
+      <h2 class="section-title">Research</h2>
+      <p class="section-sub">My work focuses on bridging classical numerical methods with modern machine learning for scientific computing.</p>
+      <div class="research-grid">
+
+        <div class="research-card">
+          <div class="card-icon">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M8 40 Q16 10 24 24 Q32 38 40 8"/>
+              <circle cx="24" cy="24" r="3" fill="currentColor"/>
+            </svg>
+          </div>
+          <h3>Physics-Informed Neural Networks</h3>
+          <p>PINNs encode PDE residuals directly into the training loss, allowing neural networks
+            to serve as mesh-free solvers. I study theoretical guarantees including stability,
+            convergence rates, and the role of collocation point sampling on approximation error.</p>
+          <div class="card-eq">$\mathcal{L} = \mathcal{L}_{\text{data}} + \lambda\,\mathcal{L}_{\text{PDE}} + \mathcal{L}_{\text{BC}}$</div>
+        </div>
+
+        <div class="research-card">
+          <div class="card-icon">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="24" cy="24" r="16"/>
+              <path d="M24 8 L24 40M8 24 L40 24"/>
+              <path d="M12 12 L36 36M36 12 L12 36" stroke-dasharray="4 4"/>
+            </svg>
+          </div>
+          <h3>Neural Ordinary Differential Equations</h3>
+          <p>Neural ODEs parameterize the derivative of a hidden state using a neural network,
+            enabling continuous-depth models and elegant treatment of dynamical systems.
+            I investigate their expressivity, adjoint-based training stability, and connections
+            to classical ODE solvers.</p>
+          <div class="card-eq">$\frac{d\mathbf{h}(t)}{dt} = f_\theta(\mathbf{h}(t),\, t)$</div>
+        </div>
+
+        <div class="research-card">
+          <div class="card-icon">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="6" y="6" width="36" height="36" rx="4"/>
+              <path d="M6 20 h36M6 32 h36M20 6 v36M32 6 v36"/>
+            </svg>
+          </div>
+          <h3>Operator Learning &amp; Inverse Problems</h3>
+          <p>Beyond forward solvers, I work on learning solution operators that map PDE
+            parameters to solutions, and on recovering unknown coefficients or source terms
+            from sparse observations &mdash; inverse problems ubiquitous in imaging, geophysics, and biology.</p>
+          <div class="card-eq">$\mathcal{G}_\theta : \mathcal{A} \to \mathcal{U}, \quad a \mapsto u$</div>
+        </div>
+
+        <div class="research-card">
+          <div class="card-icon">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M8 36 L20 20 L28 28 L36 12 L44 18"/>
+              <circle cx="20" cy="20" r="2" fill="currentColor"/>
+              <circle cx="28" cy="28" r="2" fill="currentColor"/>
+              <circle cx="36" cy="12" r="2" fill="currentColor"/>
+            </svg>
+          </div>
+          <h3>Numerical Methods &amp; Error Analysis</h3>
+          <p>A central theme of my research is the rigorous analysis of learned solvers.
+            I develop error estimates that account for approximation, optimization, and
+            generalization error, connecting the classical numerical analysis framework
+            to the statistical learning setting.</p>
+          <div class="card-eq">$\|u - u_\theta\| \leq \varepsilon_{\text{approx}} + \varepsilon_{\text{opt}} + \varepsilon_{\text{gen}}$</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="publications">
+    <div class="container">
+      <h2 class="section-title">Publications</h2>
+      <p class="section-sub">Selected papers and preprints.</p>
+      <div class="pub-list">
+
+        <div class="pub-item">
+          <div class="pub-year">2025</div>
+          <div class="pub-body">
+            <p class="pub-title">Advancing Partial Differential Equation Solvers: Integrating Numerical Methods with Machine Learning</p>
+            <p class="pub-authors">Emmanuel Hackman</p>
+            <p class="pub-venue">Preprint</p>
+            <div class="pub-tags">
+              <span class="tag tag-sm">PINNs</span>
+              <span class="tag tag-sm">PDEs</span>
+              <span class="tag tag-sm">Numerical Methods</span>
+            </div>
+            <div class="pub-links">
+              <a href="#" class="pub-link">[PDF]</a>
+              <a href="#" class="pub-link">[arXiv]</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="pub-item pub-placeholder">
+          <div class="pub-year">&mdash;</div>
+          <div class="pub-body">
+            <p class="pub-title" style="opacity:0.45; font-style:italic;">More papers coming soon&hellip;</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <h2 class="section-title">Contact</h2>
+      <p class="section-sub">I'm always happy to chat about research, collaborations, or anything related to scientific machine learning.</p>
+      <div class="contact-grid">
+
+        <div class="contact-card">
+          <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="4" width="20" height="16" rx="2"/>
+            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+          </svg>
+          <p class="contact-label">Email</p>
+          <a href="mailto:Emmanuel.Hackman@usm.edu" class="contact-value">Emmanuel.Hackman@usm.edu</a>
+        </div>
+
+        <div class="contact-card">
+          <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+          <p class="contact-label">Location</p>
+          <p class="contact-value">Department ofMathematics</p>
+        </div>
+
+        <div class="contact-card">
+          <svg class="contact-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/>
+          </svg>
+          <p class="contact-label">GitHub</p>
+          <a href="https://github.com/emmanuelhackman" target="_blank" class="contact-value">github.com/emmanuelhackman</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Emmanuel Hackman &mdash; Built with math &amp; curiosity.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
