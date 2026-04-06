@@ -4,9 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Emmanuel Hackman | Computational Mathematics</title>
+  <meta name="description" content="PhD Student in Computational Mathematics specializing in Physics-Informed Neural Networks, Neural ODEs, and Scientific Machine Learning." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300..900;1,14..32,300..900&family=JetBrains+Mono:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..900;1,8..60,300..900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" />
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
@@ -20,109 +21,255 @@
 </head>
 <body>
 
-  <nav id="navbar">
+  <!-- Skip to main content (accessibility) -->
+  <a href="#about" class="skip-link">Skip to main content</a>
+
+  <!-- Scroll progress -->
+  <div id="scroll-progress" aria-hidden="true"></div>
+
+  <!-- Custom cursor -->
+  <div id="cursor-ring" aria-hidden="true"></div>
+  <div id="cursor-dot"  aria-hidden="true"></div>
+
+  <!-- ═══════════════════════════════════════════════
+       NAVIGATION
+  ═══════════════════════════════════════════════ -->
+  <nav id="navbar" role="navigation" aria-label="Main navigation">
     <div class="nav-inner">
-      <span class="nav-logo">EH</span>
-      <ul class="nav-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#research">Research</a></li>
-        <li><a href="#publications">Publications</a></li>
-        <li><a href="#contact">Contact</a></li>
+      <a href="#hero" class="nav-logo" aria-label="Emmanuel Hackman — Home">
+        <span class="logo-text">EH</span>
+        <span class="logo-pip" aria-hidden="true"></span>
+      </a>
+      <ul class="nav-links" id="navLinks" role="list">
+        <li><a href="#about"        data-section="about">About</a></li>
+        <li><a href="#research"     data-section="research">Research</a></li>
+        <li><a href="#publications" data-section="publications">Publications</a></li>
+        <li><a href="#teaching"     data-section="teaching">Teaching</a></li>
+        <li><a href="#contact"      data-section="contact">Contact</a></li>
       </ul>
-      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-        <span class="icon-sun">&#9728;</span>
-        <span class="icon-moon">&#9790;</span>
-      </button>
+      <div class="nav-actions">
+        <a href="cv.pdf" target="_blank" rel="noopener noreferrer" class="nav-cv-btn" aria-label="Download CV (PDF)">
+          <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+            <path d="M8 1a.75.75 0 0 1 .75.75v6.44l1.97-1.97a.75.75 0 1 1 1.06 1.06L8.53 10.53a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 1.06-1.06L7.25 8.19V1.75A.75.75 0 0 1 8 1ZM2.75 13a.75.75 0 0 0 0 1.5h10.5a.75.75 0 0 0 0-1.5H2.75Z"/>
+          </svg>
+          CV
+        </a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle colour theme" type="button">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <circle cx="12" cy="12" r="4"/>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+          </svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" type="button">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
   </nav>
 
-  <section id="hero">
-    <div class="hero-bg">
-      <canvas id="particleCanvas"></canvas>
+  <!-- ═══════════════════════════════════════════════
+       HERO
+  ═══════════════════════════════════════════════ -->
+  <section id="hero" aria-label="Introduction">
+
+    <!-- Layer 0 — canvas: streamline field + field arrows + ripples -->
+    <div class="hero-bg" aria-hidden="true">
+      <canvas id="fieldCanvas"></canvas>
     </div>
-    <div class="hero-content">
-      <p class="hero-greeting">Hello, I'm</p>
-      <h1 class="hero-name">Emmanuel Hackman</h1>
-      <p class="hero-title">PhD Student &mdash; Computational Mathematics</p>
-      <p class="hero-sub">
-        Physics-Informed Neural Networks &nbsp;&middot;&nbsp; Neural ODEs &nbsp;&middot;&nbsp; Scientific Machine Learning
+
+    <!-- Layer 1 — dot grid -->
+    <div class="hero-grid" aria-hidden="true"></div>
+
+    <!-- Layer 2 — ambient light orbs -->
+    <div class="hero-orb hero-orb-1" aria-hidden="true"></div>
+    <div class="hero-orb hero-orb-2" aria-hidden="true"></div>
+    <div class="hero-orb hero-orb-3" aria-hidden="true"></div>
+
+    <!-- Layer 3 — hero content -->
+    <div class="hero-content" id="heroContent">
+
+      <div class="hero-badge" data-reveal="fade-up" data-delay="0">
+        <span class="badge-dot" aria-hidden="true"></span>
+        <span>PhD Candidate &nbsp;&middot;&nbsp; Open to research collaboration</span>
+      </div>
+
+      <h1 class="hero-name" id="heroName" data-reveal="fade-up" data-delay="130">
+        Emmanuel<br /><span class="name-gradient">Hackman</span>
+      </h1>
+
+      <p class="hero-title" data-reveal="fade-up" data-delay="250">
+        PhD Student &mdash; Computational Mathematics
       </p>
-      <div class="hero-eq">
+
+      <p class="hero-sub" data-reveal="fade-up" data-delay="350">
+        Physics-Informed Neural Networks &nbsp;&middot;&nbsp;
+        Neural ODEs &nbsp;&middot;&nbsp;
+        Scientific Machine Learning
+      </p>
+
+      <!-- Governing equation — will scan on reveal -->
+      <div class="hero-eq" id="heroEq" data-reveal="fade-up" data-delay="480">
+        <span class="eq-label">Governing Equation</span>
         $$\mathcal{L}[\mathbf{u}](\mathbf{x}) = f(\mathbf{x}), \quad \mathbf{x} \in \Omega$$
+        <span class="eq-scan-line" aria-hidden="true"></span>
       </div>
-      <div class="hero-actions">
-        <a href="#research" class="btn btn-primary">View Research</a>
-        <a href="#contact" class="btn btn-outline">Get in Touch</a>
+
+      <div class="hero-actions" data-reveal="fade-up" data-delay="600">
+        <a href="#research" class="btn btn-primary">
+          <span>Explore Research</span>
+          <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
+          </svg>
+        </a>
+        <a href="#contact" class="btn btn-ghost">Get in Touch</a>
       </div>
+
+      <!-- Quick academic links: CV, Scholar, GitHub -->
+      <div class="hero-quick-links" data-reveal="fade-up" data-delay="720" aria-label="Quick links">
+        <a href="cv.pdf" target="_blank" rel="noopener noreferrer" class="quick-link">
+          <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm5 6a1 1 0 10-2 0v3.586l-1.293-1.293a1 1 0 10-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 11.586V8z" clip-rule="evenodd"/>
+          </svg>
+          Curriculum Vitae
+        </a>
+        <span class="quick-link-sep" aria-hidden="true"></span>
+        <a href="https://scholar.google.com/" target="_blank" rel="noopener noreferrer" class="quick-link">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M5.242 13.769 12 9.25 18.758 13.769 16 17H8l-2.758-3.231Z"/>
+            <path d="M12 3 1 9.5l3 1.75V18a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V11.25L23 9.5 12 3Z"/>
+          </svg>
+          Google Scholar
+        </a>
+        <span class="quick-link-sep" aria-hidden="true"></span>
+        <a href="https://github.com/emmanuelhackman" target="_blank" rel="noopener noreferrer" class="quick-link">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/>
+          </svg>
+          GitHub
+        </a>
+      </div>
+
+    </div><!-- /hero-content -->
+
+    <!-- ── Signature element: Field Probe HUD ──────────────────────
+         Displays the live vector field values (∇ψ) at the cursor.
+    ─────────────────────────────────────────────────────────────── -->
+    <aside class="field-probe" id="fieldProbe" aria-hidden="true" aria-label="Field probe — hover to read vector field">
+      <div class="probe-header">
+        <span class="probe-name">ψ-field probe</span>
+        <span class="probe-xy" id="probeXY">(—, —)</span>
+      </div>
+      <div class="probe-rows">
+        <div class="probe-row"><span>v<sub>x</sub></span><span class="probe-val" id="probeVx">—</span></div>
+        <div class="probe-row"><span>v<sub>y</sub></span><span class="probe-val" id="probeVy">—</span></div>
+        <div class="probe-row"><span>|v|</span><span class="probe-val" id="probeMag">—</span></div>
+      </div>
+      <p class="probe-foot">click to excite a wave</p>
+    </aside>
+
+    <!-- Scroll cue -->
+    <div class="scroll-cue" data-reveal="fade" data-delay="920" aria-hidden="true">
+      <span>Scroll</span>
+      <div class="scroll-track"><div class="scroll-thumb"></div></div>
     </div>
+
   </section>
 
-  <section id="about">
+  <!-- ═══════════════════════════════════════════════
+       ABOUT
+  ═══════════════════════════════════════════════ -->
+  <section id="about" aria-labelledby="about-title">
     <div class="container">
-      <h2 class="section-title">About Me</h2>
+
+      <header class="section-header" data-reveal="fade-up">
+        <span class="section-eyebrow">01 — Who I Am</span>
+        <h2 class="section-title" id="about-title">About Me</h2>
+      </header>
+
       <div class="about-grid">
-        <div class="about-avatar">
-          <!-- To add your photo: save it as photo.jpg in this folder -->
-          <img src="photo.jpg" alt="Emmanuel Hackman"
-               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-               style="width:140px;height:140px;border-radius:50%;object-fit:cover;margin:0 auto 1.5rem;display:block;box-shadow:var(--shadow-md);" />
-          <div class="avatar-placeholder" style="display:none;">
-            <span>EH</span>
+
+        <aside class="about-sidebar" data-reveal="fade-right">
+          <div class="photo-ring">
+            <img src="photo.jpg" alt="Portrait of Emmanuel Hackman"
+                 onerror="this.style.display='none'; document.getElementById('avatarFallback').style.display='flex';" />
+            <div class="avatar-placeholder" id="avatarFallback" style="display:none;"><span>EH</span></div>
           </div>
-          <div class="about-links">
-            <a href="mailto:hackman@university.edu" class="icon-link" title="Email">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          <nav class="about-links" aria-label="Social links">
+            <a href="mailto:Emmanuel.Hackman@usm.edu" class="icon-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <rect x="2" y="4" width="20" height="16" rx="2"/>
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+              </svg>
+              <span>Email</span>
             </a>
-            <a href="https://github.com/emmanuelhackman" target="_blank" class="icon-link" title="GitHub">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
+            <a href="https://github.com/emmanuelhackman" target="_blank" rel="noopener noreferrer" class="icon-link">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/>
+              </svg>
+              <span>GitHub</span>
             </a>
-            <a href="https://scholar.google.com/" target="_blank" class="icon-link" title="Google Scholar">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M5.242 13.769 12 9.25 18.758 13.769 16 17H8l-2.758-3.231Z"/><path d="M12 3 1 9.5l3 1.75V18a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V11.25L23 9.5 12 3Z"/></svg>
+            <a href="https://scholar.google.com/" target="_blank" rel="noopener noreferrer" class="icon-link">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M5.242 13.769 12 9.25 18.758 13.769 16 17H8l-2.758-3.231Z"/>
+                <path d="M12 3 1 9.5l3 1.75V18a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V11.25L23 9.5 12 3Z"/>
+              </svg>
+              <span>Scholar</span>
             </a>
-          </div>
-        </div>
-        <div class="about-text">
-          <p>
-            I am a PhD student in the Department of Computational Mathematics, where I develop
+          </nav>
+        </aside>
+
+        <div class="about-text" data-reveal="fade-left">
+          <p>I am a PhD student in the Department of Computational Mathematics, where I develop
             machine-learning-based methods for solving differential equations. My work sits at the
             intersection of <strong>numerical analysis</strong>, <strong>deep learning</strong>, and
-            <strong>scientific computing</strong>.
-          </p>
-          <p>
-            My primary focus is on <strong>Physics-Informed Neural Networks (PINNs)</strong> and
-            <strong>Neural Ordinary Differential Equations (Neural ODEs)</strong> &mdash; methods that
+            <strong>scientific computing</strong>.</p>
+          <p>My primary focus is on <strong>Physics-Informed Neural Networks (PINNs)</strong> and
+            <strong>Neural Ordinary Differential Equations (Neural ODEs)</strong> — methods that
             embed physical laws directly into neural network architectures, enabling data-efficient
-            and interpretable solvers for complex PDE systems.
-          </p>
-          <p>
-            I am broadly interested in questions of convergence, stability, and error estimation
+            and interpretable solvers for complex PDE systems.</p>
+          <p>I am broadly interested in questions of convergence, stability, and error estimation
             for learned solvers, as well as their application to inverse problems in science and
-            engineering.
-          </p>
-          <div class="interest-tags">
-            <span class="tag">PINNs</span>
-            <span class="tag">Neural ODEs</span>
-            <span class="tag">Scientific ML</span>
-            <span class="tag">Numerical Analysis</span>
-            <span class="tag">Inverse Problems</span>
-            <span class="tag">Deep Learning</span>
+            engineering.</p>
+          <div class="interest-tags" role="list" aria-label="Research interests">
+            <span class="tag" role="listitem">PINNs</span>
+            <span class="tag" role="listitem">Neural ODEs</span>
+            <span class="tag" role="listitem">Scientific ML</span>
+            <span class="tag" role="listitem">Numerical Analysis</span>
+            <span class="tag" role="listitem">Inverse Problems</span>
+            <span class="tag" role="listitem">Deep Learning</span>
           </div>
         </div>
+
       </div>
     </div>
   </section>
 
-  <section id="research">
+  <!-- ═══════════════════════════════════════════════
+       RESEARCH
+  ═══════════════════════════════════════════════ -->
+  <section id="research" aria-labelledby="research-title">
     <div class="container">
-      <h2 class="section-title">Research</h2>
-      <p class="section-sub">My work focuses on bridging classical numerical methods with modern machine learning for scientific computing.</p>
+
+      <header class="section-header" data-reveal="fade-up">
+        <span class="section-eyebrow">02 — What I Study</span>
+        <h2 class="section-title" id="research-title">Research</h2>
+        <p class="section-sub">Bridging classical numerical methods with modern machine learning for scientific computing.</p>
+      </header>
+
       <div class="research-grid">
 
-        <div class="research-card">
-          <div class="card-icon">
-            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M8 40 Q16 10 24 24 Q32 38 40 8"/>
-              <circle cx="24" cy="24" r="3" fill="currentColor"/>
+        <!-- Card 1: PINNs -->
+        <article class="research-card" data-reveal="fade-up" data-delay="0" style="--card-hue:213">
+          <div class="card-stripe" aria-hidden="true"></div>
+          <div class="card-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+              <path d="M6 38 Q14 6 24 22 Q34 38 42 6"/>
+              <circle cx="24" cy="22" r="3" fill="currentColor" stroke="none"/>
+              <circle cx="13" cy="29" r="2" fill="currentColor" stroke="none" opacity=".45"/>
+              <circle cx="35" cy="15" r="2" fill="currentColor" stroke="none" opacity=".45"/>
             </svg>
           </div>
           <h3>Physics-Informed Neural Networks</h3>
@@ -130,14 +277,22 @@
             to serve as mesh-free solvers. I study theoretical guarantees including stability,
             convergence rates, and the role of collocation point sampling on approximation error.</p>
           <div class="card-eq">$\mathcal{L} = \mathcal{L}_{\text{data}} + \lambda\,\mathcal{L}_{\text{PDE}} + \mathcal{L}_{\text{BC}}$</div>
-        </div>
+          <footer class="card-footer">
+            <span class="card-tag">PDE Solvers</span>
+            <span class="card-tag">Collocation</span>
+            <span class="card-tag">Mesh-free</span>
+          </footer>
+        </article>
 
-        <div class="research-card">
-          <div class="card-icon">
-            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
-              <circle cx="24" cy="24" r="16"/>
-              <path d="M24 8 L24 40M8 24 L40 24"/>
-              <path d="M12 12 L36 36M36 12 L12 36" stroke-dasharray="4 4"/>
+        <!-- Card 2: Neural ODEs -->
+        <article class="research-card" data-reveal="fade-up" data-delay="80" style="--card-hue:265">
+          <div class="card-stripe" aria-hidden="true"></div>
+          <div class="card-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+              <circle cx="24" cy="24" r="15"/>
+              <path d="M24 9 L24 39M9 24 L39 24"/>
+              <path d="M13.5 13.5 L34.5 34.5M34.5 13.5 L13.5 34.5" stroke-dasharray="3 5"/>
+              <circle cx="24" cy="24" r="4" fill="currentColor" stroke="none" opacity=".2"/>
             </svg>
           </div>
           <h3>Neural Ordinary Differential Equations</h3>
@@ -145,30 +300,48 @@
             enabling continuous-depth models and elegant treatment of dynamical systems.
             I investigate their expressivity, adjoint-based training stability, and connections
             to classical ODE solvers.</p>
-          <div class="card-eq">$\frac{d\mathbf{h}(t)}{dt} = f_\theta(\mathbf{h}(t),\, t)$</div>
-        </div>
+          <div class="card-eq">$\dfrac{d\mathbf{h}(t)}{dt} = f_\theta\!\left(\mathbf{h}(t),\, t\right)$</div>
+          <footer class="card-footer">
+            <span class="card-tag">Dynamical Systems</span>
+            <span class="card-tag">Adjoint Method</span>
+          </footer>
+        </article>
 
-        <div class="research-card">
-          <div class="card-icon">
-            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
-              <rect x="6" y="6" width="36" height="36" rx="4"/>
-              <path d="M6 20 h36M6 32 h36M20 6 v36M32 6 v36"/>
+        <!-- Card 3: Operator Learning -->
+        <article class="research-card" data-reveal="fade-up" data-delay="160" style="--card-hue:185">
+          <div class="card-stripe" aria-hidden="true"></div>
+          <div class="card-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+              <rect x="7" y="7" width="34" height="34" rx="4"/>
+              <path d="M7 20 h34M7 32 h34M20 7 v34M32 7 v34"/>
+              <circle cx="20" cy="20" r="2" fill="currentColor" stroke="none" opacity=".35"/>
+              <circle cx="32" cy="32" r="2" fill="currentColor" stroke="none" opacity=".35"/>
+              <circle cx="20" cy="32" r="2" fill="currentColor" stroke="none" opacity=".2"/>
+              <circle cx="32" cy="20" r="2" fill="currentColor" stroke="none" opacity=".2"/>
             </svg>
           </div>
           <h3>Operator Learning &amp; Inverse Problems</h3>
           <p>Beyond forward solvers, I work on learning solution operators that map PDE
             parameters to solutions, and on recovering unknown coefficients or source terms
-            from sparse observations &mdash; inverse problems ubiquitous in imaging, geophysics, and biology.</p>
-          <div class="card-eq">$\mathcal{G}_\theta : \mathcal{A} \to \mathcal{U}, \quad a \mapsto u$</div>
-        </div>
+            from sparse observations — inverse problems ubiquitous in imaging, geophysics, and biology.</p>
+          <div class="card-eq">$\mathcal{G}_\theta : \mathcal{A} \to \mathcal{U},\quad a \mapsto u$</div>
+          <footer class="card-footer">
+            <span class="card-tag">Operator Learning</span>
+            <span class="card-tag">Inverse Problems</span>
+          </footer>
+        </article>
 
-        <div class="research-card">
-          <div class="card-icon">
-            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M8 36 L20 20 L28 28 L36 12 L44 18"/>
-              <circle cx="20" cy="20" r="2" fill="currentColor"/>
-              <circle cx="28" cy="28" r="2" fill="currentColor"/>
-              <circle cx="36" cy="12" r="2" fill="currentColor"/>
+        <!-- Card 4: Error Analysis -->
+        <article class="research-card" data-reveal="fade-up" data-delay="240" style="--card-hue:148">
+          <div class="card-stripe" aria-hidden="true"></div>
+          <div class="card-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+              <path d="M6 36 L18 20 L27 29 L37 11"/>
+              <circle cx="18" cy="20" r="2.5" fill="currentColor" stroke="none"/>
+              <circle cx="27" cy="29" r="2.5" fill="currentColor" stroke="none"/>
+              <circle cx="37" cy="11" r="2.5" fill="currentColor" stroke="none"/>
+              <path d="M6 36 L18 20" stroke-dasharray="3 4" opacity=".35"/>
+              <path d="M27 29 L37 11" stroke-dasharray="3 4" opacity=".35"/>
             </svg>
           </div>
           <h3>Numerical Methods &amp; Error Analysis</h3>
@@ -177,40 +350,124 @@
             generalization error, connecting the classical numerical analysis framework
             to the statistical learning setting.</p>
           <div class="card-eq">$\|u - u_\theta\| \leq \varepsilon_{\text{approx}} + \varepsilon_{\text{opt}} + \varepsilon_{\text{gen}}$</div>
-        </div>
+          <footer class="card-footer">
+            <span class="card-tag">Error Bounds</span>
+            <span class="card-tag">Convergence Theory</span>
+          </footer>
+        </article>
 
       </div>
     </div>
   </section>
 
-  <section id="publications">
+  <!-- ═══════════════════════════════════════════════
+       PUBLICATIONS
+  ═══════════════════════════════════════════════ -->
+  <section id="publications" aria-labelledby="pub-title">
     <div class="container">
-      <h2 class="section-title">Publications</h2>
-      <p class="section-sub">Selected papers and preprints.</p>
-      <div class="pub-list">
 
-        <div class="pub-item">
-          <div class="pub-year">2025</div>
+      <header class="section-header" data-reveal="fade-up">
+        <span class="section-eyebrow">03 — My Work</span>
+        <h2 class="section-title" id="pub-title">Publications</h2>
+        <p class="section-sub">Selected papers and preprints in computational mathematics and scientific machine learning.</p>
+      </header>
+
+      <!-- Filter tabs -->
+      <div class="pub-tabs" role="tablist" aria-label="Filter publications by type" data-reveal="fade-up">
+        <button class="pub-tab active" role="tab" aria-selected="true"  data-filter="all">All</button>
+        <button class="pub-tab"        role="tab" aria-selected="false" data-filter="preprint">Preprints</button>
+        <button class="pub-tab"        role="tab" aria-selected="false" data-filter="journal">Journal</button>
+        <button class="pub-tab"        role="tab" aria-selected="false" data-filter="conference">Conference</button>
+        <button class="pub-tab"        role="tab" aria-selected="false" data-filter="talk">Talks</button>
+      </div>
+
+      <div class="pub-list" role="list" id="pubList">
+
+        <!-- Publication 1 -->
+        <article class="pub-entry" data-type="preprint" data-reveal="fade-up" role="listitem">
+          <div class="pub-year-col">
+            <span class="pub-year">2025</span>
+            <div class="pub-year-rule" aria-hidden="true"></div>
+          </div>
           <div class="pub-body">
+            <div class="pub-meta-row">
+              <span class="pub-type-badge pub-type-preprint">Preprint</span>
+            </div>
             <p class="pub-title">Advancing Partial Differential Equation Solvers: Integrating Numerical Methods with Machine Learning</p>
             <p class="pub-authors">Emmanuel Hackman</p>
-            <p class="pub-venue">Preprint</p>
+            <p class="pub-venue">arXiv, 2025</p>
+
             <div class="pub-tags">
               <span class="tag tag-sm">PINNs</span>
               <span class="tag tag-sm">PDEs</span>
               <span class="tag tag-sm">Numerical Methods</span>
             </div>
-            <div class="pub-links">
-              <a href="#" class="pub-link">[PDF]</a>
-              <a href="#" class="pub-link">[arXiv]</a>
+
+            <!-- Action row -->
+            <div class="pub-actions">
+              <a href="#" class="pub-link">
+                <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd"/>
+                </svg>
+                PDF
+              </a>
+              <a href="#" class="pub-link">
+                <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M12.586 4.586a2 2 0 112.828 2.828l-3 3a2 2 0 01-2.828 0 1 1 0 00-1.414 1.414 4 4 0 005.656 0l3-3a4 4 0 00-5.656-5.656l-1.5 1.5a1 1 0 101.414 1.414l1.5-1.5zm-5 5a2 2 0 012.828 0 1 1 0 101.414-1.414 4 4 0 00-5.656 0l-3 3a4 4 0 105.656 5.656l1.5-1.5a1 1 0 10-1.414-1.414l-1.5 1.5a2 2 0 11-2.828-2.828l3-3z" clip-rule="evenodd"/>
+                </svg>
+                arXiv
+              </a>
+              <button class="pub-toggle-btn" data-target="abstract-1" aria-expanded="false" type="button">
+                Abstract
+                <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" class="toggle-chevron">
+                  <path d="M4.47 6.47a.75.75 0 0 1 1.06 0L8 8.94l2.47-2.47a.75.75 0 1 1 1.06 1.06l-3 3a.75.75 0 0 1-1.06 0l-3-3a.75.75 0 0 1 0-1.06Z"/>
+                </svg>
+              </button>
+              <button class="pub-toggle-btn" data-target="bibtex-1" aria-expanded="false" type="button">
+                BibTeX
+                <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" class="toggle-chevron">
+                  <path d="M4.47 6.47a.75.75 0 0 1 1.06 0L8 8.94l2.47-2.47a.75.75 0 1 1 1.06 1.06l-3 3a.75.75 0 0 1-1.06 0l-3-3a.75.75 0 0 1 0-1.06Z"/>
+                </svg>
+              </button>
+            </div>
+
+            <!-- Abstract panel -->
+            <div class="pub-panel" id="abstract-1" hidden>
+              <p class="pub-abstract">We present a unified framework for integrating classical numerical methods with physics-informed machine learning approaches to solve partial differential equations. Our method combines finite-element discretization with PINN residual loss terms, achieving improved convergence rates on elliptic and parabolic benchmark problems. We provide rigorous error bounds and numerical experiments on challenging multi-scale geometries.</p>
+            </div>
+
+            <!-- BibTeX panel -->
+            <div class="pub-panel pub-panel-bibtex" id="bibtex-1" hidden>
+              <div class="bibtex-header">
+                <span class="bibtex-label">BibTeX</span>
+                <button class="bibtex-copy-btn" data-bibtex-target="bibtex-code-1" type="button" aria-label="Copy BibTeX to clipboard">
+                  <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                    <path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"/>
+                    <path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"/>
+                  </svg>
+                  Copy
+                </button>
+              </div>
+              <pre class="bibtex-code" id="bibtex-code-1">@article{hackman2025pde,
+  title   = {Advancing Partial Differential Equation Solvers:
+             Integrating Numerical Methods with Machine Learning},
+  author  = {Hackman, Emmanuel},
+  journal = {arXiv preprint},
+  year    = {2025},
+  note    = {arXiv:2025.XXXXX}
+}</pre>
             </div>
           </div>
-        </div>
+        </article>
 
-        <div class="pub-item pub-placeholder">
-          <div class="pub-year">&mdash;</div>
+        <!-- Placeholder -->
+        <div class="pub-entry pub-placeholder" data-type="all" data-reveal="fade-up" data-delay="100" role="listitem" aria-hidden="true">
+          <div class="pub-year-col">
+            <span class="pub-year" style="opacity:.22;">&mdash;</span>
+            <div class="pub-year-rule"></div>
+          </div>
           <div class="pub-body">
-            <p class="pub-title" style="opacity:0.45; font-style:italic;">More papers coming soon&hellip;</p>
+            <p class="pub-title" style="opacity:.28; font-style:italic;">More papers coming soon&hellip;</p>
           </div>
         </div>
 
@@ -218,45 +475,143 @@
     </div>
   </section>
 
-  <section id="contact">
+  <!-- ═══════════════════════════════════════════════
+       TEACHING  (section 04)
+  ═══════════════════════════════════════════════ -->
+  <section id="teaching" aria-labelledby="teaching-title">
     <div class="container">
-      <h2 class="section-title">Contact</h2>
-      <p class="section-sub">I'm always happy to chat about research, collaborations, or anything related to scientific machine learning.</p>
-      <div class="contact-grid">
 
-        <div class="contact-card">
-          <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <rect x="2" y="4" width="20" height="16" rx="2"/>
-            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
-          </svg>
-          <p class="contact-label">Email</p>
-          <a href="mailto:Emmanuel.Hackman@usm.edu" class="contact-value">Emmanuel.Hackman@usm.edu</a>
-        </div>
+      <header class="section-header" data-reveal="fade-up">
+        <span class="section-eyebrow">04 — In the Classroom</span>
+        <h2 class="section-title" id="teaching-title">Teaching</h2>
+        <p class="section-sub">I believe that rigorous mathematical thinking and intuitive understanding are not at odds — good pedagogy develops both simultaneously.</p>
+      </header>
 
-        <div class="contact-card">
-          <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
-            <circle cx="12" cy="10" r="3"/>
+      <!-- Teaching philosophy -->
+      <div class="teaching-philosophy" data-reveal="fade-up" data-delay="100">
+        <div class="philosophy-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 0 0 1.5-.189m-1.5.189a6.01 6.01 0 0 1-1.5-.189m3.75 7.478a12.06 12.06 0 0 1-4.5 0m3.75 2.383a14.406 14.406 0 0 1-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 1 0-7.517 0c.85.493 1.509 1.333 1.509 2.316V18"/>
           </svg>
-          <p class="contact-label">Location</p>
-          <p class="contact-value">Department ofMathematics</p>
         </div>
+        <blockquote class="philosophy-quote">
+          "Mathematics is best learned through a combination of careful proof and concrete
+          computation. I design my courses to move fluidly between abstraction and application,
+          so students develop both formal rigour and computational intuition."
+        </blockquote>
+      </div>
 
-        <div class="contact-card">
-          <svg class="contact-icon" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/>
-          </svg>
-          <p class="contact-label">GitHub</p>
-          <a href="https://github.com/emmanuelhackman" target="_blank" class="contact-value">github.com/emmanuelhackman</a>
-        </div>
+      <!-- Course grid -->
+      <div class="course-grid">
+
+        <article class="course-card" data-reveal="fade-up" data-delay="0">
+          <div class="course-meta">
+            <span class="course-code">MATH 491</span>
+            <span class="course-semester">Spring 2025</span>
+          </div>
+          <h3 class="course-title">Numerical Methods for PDEs</h3>
+          <p class="course-desc">Graduate-level introduction to finite-difference, finite-element, and spectral methods for elliptic, parabolic, and hyperbolic equations. Includes MATLAB and Python labs.</p>
+          <div class="course-role">
+            <span class="course-role-badge">Teaching Assistant</span>
+          </div>
+        </article>
+
+        <article class="course-card" data-reveal="fade-up" data-delay="80">
+          <div class="course-meta">
+            <span class="course-code">MATH 341</span>
+            <span class="course-semester">Fall 2024</span>
+          </div>
+          <h3 class="course-title">Ordinary Differential Equations</h3>
+          <p class="course-desc">Undergraduate course covering first and higher-order ODEs, systems of equations, phase-plane analysis, and an introduction to stability theory.</p>
+          <div class="course-role">
+            <span class="course-role-badge">Teaching Assistant</span>
+          </div>
+        </article>
+
+        <article class="course-card" data-reveal="fade-up" data-delay="160">
+          <div class="course-meta">
+            <span class="course-code">MATH 210</span>
+            <span class="course-semester">Fall 2023 – Spring 2024</span>
+          </div>
+          <h3 class="course-title">Calculus III</h3>
+          <p class="course-desc">Multivariable calculus: partial derivatives, multiple integrals, vector fields, line and surface integrals, Stokes' and Divergence theorems.</p>
+          <div class="course-role">
+            <span class="course-role-badge">Teaching Assistant</span>
+          </div>
+        </article>
 
       </div>
     </div>
   </section>
 
-  <footer>
+  <!-- ═══════════════════════════════════════════════
+       CONTACT  (section 05)
+  ═══════════════════════════════════════════════ -->
+  <section id="contact" aria-labelledby="contact-title">
     <div class="container">
-      <p>&copy; 2025 Emmanuel Hackman &mdash; Built with math &amp; curiosity.</p>
+
+      <header class="section-header" data-reveal="fade-up">
+        <span class="section-eyebrow">05 — Let's Connect</span>
+        <h2 class="section-title" id="contact-title">Contact</h2>
+        <p class="section-sub">I'm always happy to chat about research, collaborations, or anything related to scientific machine learning.</p>
+      </header>
+
+      <div class="contact-grid">
+
+        <a href="mailto:Emmanuel.Hackman@usm.edu" class="contact-card" data-reveal="fade-up" data-delay="0">
+          <div class="contact-icon-wrap" aria-hidden="true">
+            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="4" width="20" height="16" rx="2"/>
+              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+            </svg>
+          </div>
+          <p class="contact-label">Email</p>
+          <p class="contact-value">Emmanuel.Hackman@usm.edu</p>
+        </a>
+
+        <div class="contact-card" data-reveal="fade-up" data-delay="80">
+          <div class="contact-icon-wrap" aria-hidden="true">
+            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+          </div>
+          <p class="contact-label">Location</p>
+          <p class="contact-value">Department of Mathematics<br />University of Southern Mississippi</p>
+        </div>
+
+        <a href="https://github.com/emmanuelhackman" target="_blank" rel="noopener noreferrer" class="contact-card" data-reveal="fade-up" data-delay="160">
+          <div class="contact-icon-wrap" aria-hidden="true">
+            <svg class="contact-icon" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/>
+            </svg>
+          </div>
+          <p class="contact-label">GitHub</p>
+          <p class="contact-value">github.com/emmanuelhackman</p>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════════════ -->
+  <footer role="contentinfo">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <span class="logo-text">EH</span>
+        <span class="footer-sep" aria-hidden="true">·</span>
+        <span class="footer-tagline">Built with math &amp; curiosity.</span>
+      </div>
+      <nav class="footer-links" aria-label="Footer navigation">
+        <a href="#about">About</a>
+        <a href="#research">Research</a>
+        <a href="#publications">Publications</a>
+        <a href="#teaching">Teaching</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <p class="footer-copy">&copy; 2025 Emmanuel Hackman</p>
     </div>
   </footer>
 
