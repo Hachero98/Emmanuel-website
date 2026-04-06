@@ -29,7 +29,7 @@
 
   <!-- Custom cursor -->
   <div id="cursor-ring" aria-hidden="true"></div>
-  <div id="cursor-dot"  aria-hidden="true"></div>
+  <div id="cursor-dot" aria-hidden="true"></div>
 
   <!-- ═══════════════════════════════════════════════
        NAVIGATION
@@ -41,11 +41,11 @@
         <span class="logo-pip" aria-hidden="true"></span>
       </a>
       <ul class="nav-links" id="navLinks" role="list">
-        <li><a href="#about"        data-section="about">About</a></li>
-        <li><a href="#research"     data-section="research">Research</a></li>
+        <li><a href="#about" data-section="about">About</a></li>
+        <li><a href="#research" data-section="research">Research</a></li>
         <li><a href="#publications" data-section="publications">Publications</a></li>
-        <li><a href="#teaching"     data-section="teaching">Teaching</a></li>
-        <li><a href="#contact"      data-section="contact">Contact</a></li>
+        <li><a href="#teaching" data-section="teaching">Teaching</a></li>
+        <li><a href="#contact" data-section="contact">Contact</a></li>
       </ul>
       <div class="nav-actions">
         <a href="cv.pdf" target="_blank" rel="noopener noreferrer" class="nav-cv-btn" aria-label="Download CV (PDF)">
@@ -110,7 +110,6 @@
         Scientific Machine Learning
       </p>
 
-      <!-- Governing equation — will scan on reveal -->
       <div class="hero-eq" id="heroEq" data-reveal="fade-up" data-delay="480">
         <span class="eq-label">Governing Equation</span>
         $$\mathcal{L}[\mathbf{u}](\mathbf{x}) = f(\mathbf{x}), \quad \mathbf{x} \in \Omega$$
@@ -127,7 +126,6 @@
         <a href="#contact" class="btn btn-ghost">Get in Touch</a>
       </div>
 
-      <!-- Quick academic links: CV, Scholar, GitHub -->
       <div class="hero-quick-links" data-reveal="fade-up" data-delay="720" aria-label="Quick links">
         <a href="cv.pdf" target="_blank" rel="noopener noreferrer" class="quick-link">
           <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -152,11 +150,8 @@
         </a>
       </div>
 
-    </div><!-- /hero-content -->
+    </div>
 
-    <!-- ── Signature element: Field Probe HUD ──────────────────────
-         Displays the live vector field values (∇ψ) at the cursor.
-    ─────────────────────────────────────────────────────────────── -->
     <aside class="field-probe" id="fieldProbe" aria-hidden="true" aria-label="Field probe — hover to read vector field">
       <div class="probe-header">
         <span class="probe-name">ψ-field probe</span>
@@ -170,7 +165,6 @@
       <p class="probe-foot">click to excite a wave</p>
     </aside>
 
-    <!-- Scroll cue -->
     <div class="scroll-cue" data-reveal="fade" data-delay="920" aria-hidden="true">
       <span>Scroll</span>
       <div class="scroll-track"><div class="scroll-thumb"></div></div>
@@ -223,23 +217,31 @@
 
         <div class="about-text" data-reveal="fade-left">
           <p>I am a PhD student in the Department of Computational Mathematics, where I develop
-            machine-learning-based methods for solving differential equations. My work sits at the
-            intersection of <strong>numerical analysis</strong>, <strong>deep learning</strong>, and
-            <strong>scientific computing</strong>.</p>
-          <p>My primary focus is on <strong>Physics-Informed Neural Networks (PINNs)</strong> and
-            <strong>Neural Ordinary Differential Equations (Neural ODEs)</strong> — methods that
-            embed physical laws directly into neural network architectures, enabling data-efficient
-            and interpretable solvers for complex PDE systems.</p>
-          <p>I am broadly interested in questions of convergence, stability, and error estimation
-            for learned solvers, as well as their application to inverse problems in science and
-            engineering.</p>
+            machine-learning-based methods for solving differential equations. My research lies at the
+            intersection of <strong>numerical analysis</strong>, <strong>scientific computing</strong>, and
+            <strong>deep learning</strong>.</p>
+
+          <p>My work focuses on <strong>Physics-Informed Neural Networks (PINNs)</strong> and
+            <strong>Neural Ordinary Differential Equations (Neural ODEs)</strong>, with an emphasis on
+            building robust and scalable frameworks for complex physical systems. I am particularly
+            interested in addressing <strong>multiscale challenges</strong> in PINNs and integrating
+            <strong>classical numerical methods</strong> with learning-based approaches.</p>
+
+          <p>I apply these methods to problems in <strong>fluid dynamics</strong>,
+            <strong>material science</strong>, and <strong>medical imaging</strong>, where governing
+            equations are often high-dimensional and data is limited.</p>
+
+          <p>More broadly, my research explores questions of <strong>stability</strong>,
+            <strong>convergence</strong>, and <strong>error estimation</strong> for learned solvers,
+            as well as their use in inverse problems across science and engineering.</p>
+
           <div class="interest-tags" role="list" aria-label="Research interests">
             <span class="tag" role="listitem">PINNs</span>
             <span class="tag" role="listitem">Neural ODEs</span>
+            <span class="tag" role="listitem">Multiscale Modeling</span>
             <span class="tag" role="listitem">Scientific ML</span>
-            <span class="tag" role="listitem">Numerical Analysis</span>
+            <span class="tag" role="listitem">Numerical Methods</span>
             <span class="tag" role="listitem">Inverse Problems</span>
-            <span class="tag" role="listitem">Deep Learning</span>
           </div>
         </div>
 
@@ -261,7 +263,6 @@
 
       <div class="research-grid">
 
-        <!-- Card 1: PINNs -->
         <article class="research-card" data-reveal="fade-up" data-delay="0" style="--card-hue:213">
           <div class="card-stripe" aria-hidden="true"></div>
           <div class="card-icon" aria-hidden="true">
@@ -284,7 +285,6 @@
           </footer>
         </article>
 
-        <!-- Card 2: Neural ODEs -->
         <article class="research-card" data-reveal="fade-up" data-delay="80" style="--card-hue:265">
           <div class="card-stripe" aria-hidden="true"></div>
           <div class="card-icon" aria-hidden="true">
@@ -307,7 +307,6 @@
           </footer>
         </article>
 
-        <!-- Card 3: Operator Learning -->
         <article class="research-card" data-reveal="fade-up" data-delay="160" style="--card-hue:185">
           <div class="card-stripe" aria-hidden="true"></div>
           <div class="card-icon" aria-hidden="true">
@@ -331,7 +330,6 @@
           </footer>
         </article>
 
-        <!-- Card 4: Error Analysis -->
         <article class="research-card" data-reveal="fade-up" data-delay="240" style="--card-hue:148">
           <div class="card-stripe" aria-hidden="true"></div>
           <div class="card-icon" aria-hidden="true">
@@ -372,18 +370,16 @@
         <p class="section-sub">Selected papers and preprints in computational mathematics and scientific machine learning.</p>
       </header>
 
-      <!-- Filter tabs -->
       <div class="pub-tabs" role="tablist" aria-label="Filter publications by type" data-reveal="fade-up">
-        <button class="pub-tab active" role="tab" aria-selected="true"  data-filter="all">All</button>
-        <button class="pub-tab"        role="tab" aria-selected="false" data-filter="preprint">Preprints</button>
-        <button class="pub-tab"        role="tab" aria-selected="false" data-filter="journal">Journal</button>
-        <button class="pub-tab"        role="tab" aria-selected="false" data-filter="conference">Conference</button>
-        <button class="pub-tab"        role="tab" aria-selected="false" data-filter="talk">Talks</button>
+        <button class="pub-tab active" role="tab" aria-selected="true" data-filter="all">All</button>
+        <button class="pub-tab" role="tab" aria-selected="false" data-filter="preprint">Preprints</button>
+        <button class="pub-tab" role="tab" aria-selected="false" data-filter="journal">Journal</button>
+        <button class="pub-tab" role="tab" aria-selected="false" data-filter="conference">Conference</button>
+        <button class="pub-tab" role="tab" aria-selected="false" data-filter="talk">Talks</button>
       </div>
 
       <div class="pub-list" role="list" id="pubList">
 
-        <!-- Publication 1 -->
         <article class="pub-entry" data-type="preprint" data-reveal="fade-up" role="listitem">
           <div class="pub-year-col">
             <span class="pub-year">2025</span>
@@ -403,7 +399,6 @@
               <span class="tag tag-sm">Numerical Methods</span>
             </div>
 
-            <!-- Action row -->
             <div class="pub-actions">
               <a href="#" class="pub-link">
                 <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -431,12 +426,10 @@
               </button>
             </div>
 
-            <!-- Abstract panel -->
             <div class="pub-panel" id="abstract-1" hidden>
               <p class="pub-abstract">We present a unified framework for integrating classical numerical methods with physics-informed machine learning approaches to solve partial differential equations. Our method combines finite-element discretization with PINN residual loss terms, achieving improved convergence rates on elliptic and parabolic benchmark problems. We provide rigorous error bounds and numerical experiments on challenging multi-scale geometries.</p>
             </div>
 
-            <!-- BibTeX panel -->
             <div class="pub-panel pub-panel-bibtex" id="bibtex-1" hidden>
               <div class="bibtex-header">
                 <span class="bibtex-label">BibTeX</span>
@@ -460,7 +453,6 @@
           </div>
         </article>
 
-        <!-- Placeholder -->
         <div class="pub-entry pub-placeholder" data-type="all" data-reveal="fade-up" data-delay="100" role="listitem" aria-hidden="true">
           <div class="pub-year-col">
             <span class="pub-year" style="opacity:.22;">&mdash;</span>
@@ -476,7 +468,7 @@
   </section>
 
   <!-- ═══════════════════════════════════════════════
-       TEACHING  (section 04)
+       TEACHING
   ═══════════════════════════════════════════════ -->
   <section id="teaching" aria-labelledby="teaching-title">
     <div class="container">
@@ -487,7 +479,6 @@
         <p class="section-sub">I believe that rigorous mathematical thinking and intuitive understanding are not at odds — good pedagogy develops both simultaneously.</p>
       </header>
 
-      <!-- Teaching philosophy -->
       <div class="teaching-philosophy" data-reveal="fade-up" data-delay="100">
         <div class="philosophy-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -501,7 +492,6 @@
         </blockquote>
       </div>
 
-      <!-- Course grid -->
       <div class="course-grid">
 
         <article class="course-card" data-reveal="fade-up" data-delay="0">
@@ -545,7 +535,7 @@
   </section>
 
   <!-- ═══════════════════════════════════════════════
-       CONTACT  (section 05)
+       CONTACT
   ═══════════════════════════════════════════════ -->
   <section id="contact" aria-labelledby="contact-title">
     <div class="container">
